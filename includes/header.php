@@ -15,6 +15,6 @@
 
 
 	   <!-- adding bootstrap and header -->
-	    <?php  require 'navbar.php';?>
+	   <?php include 'includes/menu.php';?>
 
 </header>

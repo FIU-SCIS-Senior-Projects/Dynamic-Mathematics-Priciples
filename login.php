@@ -1,28 +1,31 @@
-<!-- header -->
-<?php require 'header.php';?>
 <?php
+include 'core/init.php';
+include 'includes/overall/header.php';
 
-// Grab User submitted information
-$username = $_POST["username"];
-$password = $_POST["password"];
-
-// Connect to the database
-$con = mysql_connect("localhost","root","","login");
-// Make sure we connected succesfully
-if(!$con)
-{
-    die('Connection Failed'.mysql_error());
+if(empty($_POST) === false){
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	
+	if(empty($username) === true || empty($password) === true){
+		$errors[] = 'You need to enter a username and password.';
+	}else if(user_exists($username) === false){
+		$errors[] = 'There is no such username.';
+	}else if(user_active($username) === false){
+		$errors[] = 'You have to activate your account.';
+	}else{
+		$login = login($username, $password);
+		if($login === false){
+			$errors[] = 'That username/password combination is incorrect.';
+		} else{
+			echo 'LOGGED IN';
+			$_SESSION['user_id'] = $login;
+			//header('Location: index.php');
+			exit();
+		}
+	}
+	
+	print_r($errors);
 }
 
-// Select the database to use
-mysql_select_db("login",$con);
-
-$result = mysql_query("SELECT username, password FROM users WHERE username = $username");
-
-$row = mysql_fetch_array($result);
-
-if($row["username"]==$username && $row["password"]==$password)
-    echo"You are a validated user.";
-else
-    echo"Sorry, your credentials are not valid, Please try again.";
+include 'includes/overall/footer.php';
 ?>
