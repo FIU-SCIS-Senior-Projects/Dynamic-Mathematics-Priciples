@@ -29,7 +29,7 @@
       <ul class="nav navbar-nav navbar-right">
         
         <li class="inactive" > 
-            <a href="SignIn.php">Register</a>
+            <a href="registrationform.php">Register</a>
         </li>
         <li class="inactive" > 
             <a href="SignIn.php"> Sign In</a>

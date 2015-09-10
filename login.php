@@ -17,15 +17,23 @@ if(empty($_POST) === false){
 		if($login === false){
 			$errors[] = 'That username/password combination is incorrect.';
 		} else{
-			echo 'LOGGED IN';
 			$_SESSION['user_id'] = $login;
 			//header('Location: index.php');
+			echo 'LOGGED IN!';
 			exit();
 		}
 	}
 	
-	print_r($errors);
-}
 
+} else{
+	$errors[] = 'No data received.';
+}
+//include 'includes/overall/header.php';
+if(empty($errors) === false){
+?>	
+	<h2>We tried to log you in, but...</h2>
+<?php
+	echo output_errors($errors);
+}
 include 'includes/overall/footer.php';
 ?>
