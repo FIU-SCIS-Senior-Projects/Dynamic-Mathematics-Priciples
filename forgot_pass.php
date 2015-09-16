@@ -1,4 +1,4 @@
-<?php
+?php
 
 include 'core/init.php';
 include 'includes/overall/header.php';
@@ -17,27 +17,39 @@ if($_GET['code'])
 		}
 		if($get_username ==$db_username && $get_code == $db_code)
 		{
-				echo " 
+			?>
 				<form action ='pass_reset_complete.php' method = 'POST'>
-				Enter a new password<br>input type = 'password' name ='newpass'><br>
-				Re- enter your password<br><input type = 'password' name='newpass1'><p>
-				<input type ='hidden' name = 'username' value = 'db_username'>
-				<input type ='submit' value ='Update Password!'>
+					Enter a new password
+					<br>
+					<input type = 'password' name ='newpass'>
+					<br>
+					Re- enter your password
+					<br>
+					<input type = 'password' name='newpass1'>
+					<br>
+					<input type ='hidden' name = 'username' value = 'db_username'>
+					<input type ='submit' value ='Update Password!'>
 				</form>
-				";
+			<?php
 
 		}
 }
+	if(!$_GET['code'])
+{
+			?>
+				<form action = 'forgot_pass.php' method= 'POST'>
+					Enter your username
+					<br>
+					<input type = 'text' name= 'username'>
+					<br>
+					Enter your email
+					<br>
+					<input type = 'text' name ='email'>
+					<br>
+					<input type = 'submit' value = 'Submit' name = 'submit'>
+				</form>
+			<?php
 
-
-echo "
-	<form action = 'forgot_pass.php' method= 'POST'>
-	Enter your username<br><input type = 'text' name= 'username'><p>
-	Enter your email<br><input type = 'text' name ='email'<p>
-	<input type = 'submit' value = 'Submit' name = 'submit'>
-
-</form>
-";
 
 if(isset($_POST['submit']))
 {
@@ -86,7 +98,7 @@ if(isset($_POST['submit']))
 	{
 		echo "That username doesnt exits!";
 
-	}	
+		}	
+	}
 }
-
  ?>
