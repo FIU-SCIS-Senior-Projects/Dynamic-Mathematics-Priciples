@@ -3,11 +3,37 @@
 include 'core/init.php';
 include 'includes/overall/header.php';
 
+if($_GET['code'])
+{
+	$get_username = $_GET['username'];
+	$get_code = $_GET['code'];
+
+		$query = mysql_querry("SELECT * FROM users WHERE username='$get_username'");
+
+		while($row = mysql_fetch_assoc($query))
+		{
+			$db_code = $row['passreset'];
+			$db_username = $row['username'];
+		}
+		if($get_username ==$db_username && $get_code == $db_code)
+		{
+				echo " 
+				<form action ='pass_reset_complete.php' method = 'POST'>
+				Enter a new password<br>input type = 'password' name ='newpass'><br>
+				Re- enter your password<br><input type = 'password' name='newpass1'><p>
+				<input type ='hidden' name = 'username' value = 'db_username'>
+				<input type ='submit' value ='Update Password!'>
+				</form>
+				";
+
+		}
+}
+
 
 echo "
 	<form action = 'forgot_pass.php' method= 'POST'>
 	Enter your username<br><input type = 'text' name= 'username'><p>
-	Enter your email<br><input type = 'email'<p>
+	Enter your email<br><input type = 'text' name ='email'<p>
 	<input type = 'submit' value = 'Submit' name = 'submit'>
 
 </form>
@@ -29,7 +55,8 @@ if(isset($_POST['submit']))
 
 		}
 		if($email == $db_email)
-		{
+		{   
+
 			$code = rand(10000,1000000);
 
 			$to = $db_email;
@@ -38,10 +65,17 @@ if(isset($_POST['submit']))
 			This is an automated email.Please Do Not reply  to this email
 			Click on the link below or pasted into your browser
 			http://localhost/DynaMathVersion1/forgot_pass.php?code=$code&username=$username
-			
+
 			";
+			$query = "UPDATE users SET passreset='$code' WHERE username='$username'";
+			mysql_query($query);
+
+			mail($to,$subject,$body); 
+
+			echo "Please Check your Email";
 
 		}
+
 		else
 		{
 			echo "Email is incorrect";
@@ -50,7 +84,7 @@ if(isset($_POST['submit']))
 	}
 	else 
 	{
-		echo "That username doesnt exits!"
+		echo "That username doesnt exits!";
 
 	}	
 }
