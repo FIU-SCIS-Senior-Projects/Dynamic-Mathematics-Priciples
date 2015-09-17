@@ -1,24 +1,30 @@
-?php
+<?php
 
 include 'core/init.php';
 include 'includes/overall/header.php';
+
 
 if($_GET['code'])
 {
 	$get_username = $_GET['username'];
 	$get_code = $_GET['code'];
-
-		$query = mysql_querry("SELECT * FROM users WHERE username='$get_username'");
-
+		
+		$query = mysql_query("SELECT * FROM users WHERE username='$get_username'");
+		
 		while($row = mysql_fetch_assoc($query))
 		{
 			$db_code = $row['passreset'];
 			$db_username = $row['username'];
 		}
-		if($get_username ==$db_username && $get_code == $db_code)
+		echo "get_username".$get_usermame;
+		echo "db_username".$db_username;
+		echo "get_code".$get_code;
+		echo "db_code".$db_code;
+
+		if($get_username == $db_username && $get_code == $db_code)
 		{
 			?>
-				<form action ='pass_reset_complete.php' method = 'POST'>
+				<form action ='pass_reset_complete.php?code=<?php echo $code; ?>' method = 'POST'>
 					Enter a new password
 					<br>
 					<input type = 'password' name ='newpass'>
@@ -27,14 +33,17 @@ if($_GET['code'])
 					<br>
 					<input type = 'password' name='newpass1'>
 					<br>
-					<input type ='hidden' name = 'username' value = 'db_username'>
+					<input type ='hidden' name = 'username' value = '<?php echo $db_username; ?>'>
 					<input type ='submit' value ='Update Password!'>
 				</form>
 			<?php
 
 		}
 }
-	if(!$_GET['code'])
+
+
+
+if(!$_GET['code'])
 {
 			?>
 				<form action = 'forgot_pass.php' method= 'POST'>
