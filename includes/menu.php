@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
 
@@ -19,20 +21,20 @@
     </ul> 
     -->
 
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" action = "includes/searchbar.php" method = "post">
       <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search">
+      <input type="text" name = "search" size = "40" maxlength = "50" class="form-control" placeholder="Search">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" name = "Submit" class="btn btn-default" value = "Search">Submit</button>
     </form>
-
+    
       <ul class="nav navbar-nav navbar-right">
         
         <li class="inactive" > 
             <a href="registrationform.php">Register</a>
         </li>
         <li class="inactive" > 
-            <a href="SignIn.php"> Sign In</a>
+            <a href="login.php"> Sign In</a>
         </li>
         <li class="inactive" > 
             <a href="Logout.php"> Logout</a>
@@ -47,8 +49,10 @@
           </a>
           
           <ul class="dropdown-menu">
-            <li><a href="#">Sign In</a></li>
-            <li><a href="#">Register</a></li>
+            <li class = "inactive">
+                <a href="#">Sign In</a></li>
+            <li class = "inactive">
+                <a href="#">Register</a></li>
              <li><a hre = "#">Logout</a><li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Fun-Facts</a><li>
