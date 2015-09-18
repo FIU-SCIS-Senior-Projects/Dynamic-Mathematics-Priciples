@@ -1,5 +1,6 @@
 
 
+
 <?php
 include 'core/init.php';
 include 'includes/overall/header.php';?>
@@ -56,6 +57,7 @@ include 'includes/overall/header.php';?>
 
 
 <?php
+
 if(empty($_POST) === false){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -90,4 +92,6 @@ if(empty($errors) === false){
 	echo output_errors($errors);
 }
 include 'includes/overall/footer.php';
+
 ?>
+

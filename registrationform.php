@@ -83,9 +83,6 @@
 <?php 
 include 'core/init.php'; 
 
-
-//print_r($_POST);
-
 if(empty($_POST) === false){
 	$required_fields = array('username', 'password', 'password_again', 'first_name', 'email');
 	foreach($_POST as $key=>$value){
@@ -154,17 +151,14 @@ if(isset($_GET['success']) && empty($_GET['success'])){
 
 		if($username && $email && $password)
 		{
-			//echo "<p> hi ".$username."</p>";
 
 			$confirmcode = rand();
-
-			// $query = 'INSERT INTO users (username, password, first_name, last_name, email) 
-			// VALUES ("ingrid", "ingrid123","Ingrid","Troche","itroc001@fiu.edu")';
 
 			$query = "INSERT INTO users (username, password, first_name, last_name, email, confirmcode) 
 				VALUES ('".$username."', '".$password."','".$first_name."','".$last_name."','".$email."','".$confirmcode."')";
 			$queryResults = mysql_query($query);
-			//echo "<p>query results =".$queryResults."</p>";
+			
+
 				//body of email
 				$message = 
 				"

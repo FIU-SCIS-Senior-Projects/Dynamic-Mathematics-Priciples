@@ -1,5 +1,4 @@
 
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
 
@@ -21,6 +20,7 @@
     </ul> 
     -->
 
+
     <form class="navbar-form navbar-left" action = "includes/searchbar.php" method = "post">
       <div class="form-group">
       <input type="text" name = "search" size = "40" maxlength = "50" class="form-control" placeholder="Search">
@@ -28,6 +28,14 @@
     <button type="submit" name = "Submit" class="btn btn-default" value = "Search">Submit</button>
     </form>
     
+
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
       <ul class="nav navbar-nav navbar-right">
         
         <li class="inactive" > 
@@ -49,6 +57,7 @@
           </a>
           
           <ul class="dropdown-menu">
+
             <li class = "inactive">
                 <a href="#">Sign In</a></li>
             <li class = "inactive">

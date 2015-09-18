@@ -31,4 +31,5 @@ if($newpass == $newpass1)
 		  	<a/>
 		<?php	
 	}
+
 ?>

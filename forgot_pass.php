@@ -3,6 +3,7 @@
 include 'core/init.php';
 include 'includes/overall/header.php';
 
+
 if($_GET['code'])
 {
 	$get_username = $_GET['username'];
@@ -15,7 +16,6 @@ if($_GET['code'])
 			$db_code = $row['passreset'];
 			$db_username = $row['username'];
 		}
-		
 
 		if($get_username == $db_username && $get_code == $db_code)
 		{
@@ -106,4 +106,5 @@ if(isset($_POST['submit']))
 		}	
 	}
 }
+
  ?>
