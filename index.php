@@ -1,14 +1,32 @@
 <?php
 include 'core/init.php'; 
-include 'includes/overall/header.php'; ?>
-	
+include 'includes/overall/header.php'; 
 
+//session_start();
+
+?>
+	
 <div class="panel panel-default">
  <div class="panel-body">
   <div class="jumbotron">
- <h1><center>Welcome to DynaMath!</center></h1>
-  <p>DynaMath is an application were users can learn math with activities.</p>
-  <p><center><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></center></p>
+ <h1><center>
+  <?php
+
+      $nameOfUser = $_SESSION["name"];
+      if($nameOfUser)
+      {
+        echo "Welcome ".$nameOfUser." to DynaMath!";
+      }
+      else
+      {
+        echo "Welcome to DynaMath!";
+      }
+  ?>
+  </center></h1>
+  <center><p class="text-info">It is time to discover your passion for mathematics !!!</center></p>
+  <center><p class="text-info">Dynamic Mathematics Principles is an application to learn mathematics
+  by interacting with our activities fun-facts  and much more!  </center></p>
+  <p><center><a class="btn btn-primary btn-lg" href="aboutUs.php" role="button">Learn more</a></center></p>
 </div>
   </div>
 </div>
@@ -18,33 +36,33 @@ include 'includes/overall/header.php'; ?>
 	<!-- left item -->
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img3.gif" alt="html5" height="180" width="180">
+      <img src="pics/mathlogo1.jpeg" alt="html5" class="img-responsive">
       <div class="caption">
-        <h3>Fun facts</h3>
+        <h3>History</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="selectHistory.php" class="btn btn-primary" role="button">View details</a></p>
       </div>
     </div>
   </div>
   <!-- center item -->
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img4.jpg" alt="img4" height="1600" width="160" >
+      <img src="pics/mathlogo1.jpeg" alt="img4" class="img-responsive" >
       <div class="caption">
         <h3>About Us</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="aboutUs.php" class="btn btn-primary" role="button" name = "Submit">View details</a></p>
       </div>
     </div>
   </div>
   <!-- right item -->
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img6.jpg" alt="img6" height="125" width="125">
+      <img src="pics/mathlogo1.jpeg" alt="img6" class="img-responsive">
       <div class="caption">
         <h3>Activities</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="selectActivity.php" class="btn btn-primary" role="button">View details</a></p>
       </div>
     </div>
   </div>
@@ -55,22 +73,22 @@ include 'includes/overall/header.php'; ?>
 	<!-- left item -->
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img8.png" alt="img8" height="170" width="170">
+      <img src="pics/mathlogo1.jpeg" alt="img8" class="img-responsive">
       <div class="caption">
-        <h3>History</h3>
+        <h3>Fun-Facts</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="selectFunFacts.php" class="btn btn-primary" role="button">View details</a></p>
       </div>
     </div>
   </div>
 
   	<div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img4.jpg" alt="img4" height="190" width="190" >
+      <img src="pics/mathlogo1.jpeg" alt="img4" class="img-responsive" >
       <div class="caption">
-        <h3>Suggestios</h3>
+        <h3>Suggestions</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="feedback.php" class="btn btn-primary" role="button">View details</a></p>
       </div>
     </div>
   </div>
@@ -78,11 +96,11 @@ include 'includes/overall/header.php'; ?>
   	<!-- right item -->
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="img8.png" alt="img8" height="170" width="170">
+      <img src="pics/mathlogo1.jpeg" alt="img8" class="img-responsive">
       <div class="caption">
-        <h3>About Us</h3>
+        <h3>Survey</h3>
         <p>This section contains........</p>
-        <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+        <p><a href="behaviorSurvey.php" class="btn btn-primary" role="button">View details</a></p>
       </div>
     </div>
   </div>

@@ -1,4 +1,7 @@
-<?php require 'includes/overall/header.php'; ?>
+<?php 
+	require 'includes/overall/header.php'; 
+	include 'core/init.php';
+?>
 <!-- header -->
 <html>
 	<body>
@@ -71,7 +74,9 @@
 							<div class="form-group">
 								<div class = "col-sm-offeset-2 col-sm-10">
 									<button type="submit" name= "submit" class="btn btn-primary">Register</button>
-									<button type="button" class="btn btn-success">Back to Login</button>
+									<a class="btn btn-success" type="button" href = "login.php">
+										Back to Login
+									</a>
 								</div>
 							</div>
 						</form>
@@ -81,7 +86,8 @@
 			<div class="col-md-2"></div>
 		</div>
 <?php 
-include 'core/init.php'; 
+// include 'core/init.php'; 
+
 
 if(empty($_POST) === false){
 	$required_fields = array('username', 'password', 'password_again', 'first_name', 'email');
@@ -139,24 +145,29 @@ if(isset($_GET['success']) && empty($_GET['success'])){
 
 	if(isset($_POST['submit']))
 	{
-		
-		$username = mysql_real_escape_string($_POST['username']);
-		$password = mysql_real_escape_string($_POST['password']);
-		$first_name = mysql_real_escape_string($_POST['first_name']);
-		$last_name = mysql_real_escape_string($_POST['last_name']);
-		$email = mysql_real_escape_string($_POST['email']);
+		$options = array('cost' => 10);
+		$password = password_hash(sanitize($_POST['password']), PASSWORD_BCRYPT, $options);
+		$info = array();
+		$info['username'] = sanitize($_POST['username']);
+		$info['password'] = $password;
+		$info['first_name'] = sanitize($_POST['first_name']);
+		$info['last_name'] = "Last";
+		$info['email'] = sanitize($_POST['email']);
 
-		$enc_password = md5($password);
+		/* $enc_password = md5($password);
+ */
 
-
-		if($username && $email && $password)
+		if($info['username'] && $info['email'] && $info['password'])
 		{
 
-			$confirmcode = rand();
-
-			$query = "INSERT INTO users (username, password, first_name, last_name, email, confirmcode) 
+			$info['confirmcode'] = rand();
+			/* $confirmcode = = rand(); */			
+			
+			register_user($info);
+			
+			/* $query = "INSERT INTO users (username, password, first_name, last_name, email, confirmcode) 
 				VALUES ('".$username."', '".$password."','".$first_name."','".$last_name."','".$email."','".$confirmcode."')";
-			$queryResults = mysql_query($query);
+			$queryResults = mysql_query($query); */
 			
 
 				//body of email
@@ -164,13 +175,13 @@ if(isset($_GET['success']) && empty($_GET['success'])){
 				"
 				This is an automated email.Please Do Not reply  to this email
 				Click on the link below or pasted into your browser
-				http://localhost/DynaMathVersion1/emailconfirm.php?username=$username&code=$confirmcode
-				";
+				http://localhost/DynaMathVersion1/emailconfirm.php?username=".$info['username']."code=".$info['confirmcode']
+				;
 
 				$subject = "Please confirm your email";
 				$headers = "From: Do not reply";
 
-				mail($email, $subject, $message, $headers); 
+				mail($info['email'], $subject, $message, $headers); 
 
 			    echo "<p>Please Check your Email</p>";
 		}

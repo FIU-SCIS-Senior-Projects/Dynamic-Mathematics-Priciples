@@ -13,8 +13,11 @@
 	  <!-- Latest compiled and minified JavaScript -->
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-	  
+
 	   <!-- adding bootstrap and header -->
-	   <?php include 'includes/menu.php';?>
+	   <?php include 'includes/menu.php'; ?>
+
+		<!-- including custom ccs -->
+		<link rel="stylesheet" type="text/css" href="css/visitor.css">
 
 </header>

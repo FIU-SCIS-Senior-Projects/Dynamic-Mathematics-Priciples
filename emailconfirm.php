@@ -10,6 +10,22 @@
 
 		$username = $_GET['username'];
 		$code = $_GET['code'];
+		$db_code = confirmcode_from_username($username);
+
+		if($code == $db_code)
+		{
+			activateUser($username);
+	
+			echo "Thank you. Your email has been confirmed";
+		}
+		else
+		{
+			echo "Username and code don't match";
+		}
+		
+		/* /////////////////////////////////////////////////////////////////////
+		$username = $_GET['username'];
+		$code = $_GET['code'];
 
 		$query = "SELECT * FROM users WHERE username = '".$username."'";
 		$queryResults = mysql_query($query);
@@ -39,7 +55,7 @@
 		if($code == $db_code)
 		{
 			
-			$queryResults1 =mysql_query("UPDATE users SET confirmed ='1' ");
+			$queryResults1 = mysql_query("UPDATE users SET confirmed ='1' ");
 			$queryResults2 = mysql_query("UPDATE users SET confirmcode ='0' ");
 
 			// echo "<p>1 query result = ".$queryResults1."</p>";//testing
@@ -50,7 +66,7 @@
 		else
 		{
 			echo "Username and code don't match";
-		}
+		} */
 	?>
 </body>
 </html>
